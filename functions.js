@@ -69,12 +69,18 @@ function booksByColor(books) {
  ****************************************************************/
 function titlesByAuthorName(authorName, authors, books) {
   // Your code goes here
+
+
   let auth =authors.find(author=> author.name.toLowerCase()===authorName.toLowerCase())
-  // auth.forEach(author=>bookIds.push(author.book))
-  let bookIds=auth.books
-  
-  booksList=bookIds.map(id=>getBookById(id))
+  if (auth)
+ { let bookIds=auth.books
+
+  booksList=bookIds.map(ids=>(getBookById(ids,books).title))
+
   return booksList
+}
+
+  else return []
 
 }
 
