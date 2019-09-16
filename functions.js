@@ -73,10 +73,10 @@ function titlesByAuthorName(authorName, authors, books) {
 
   let auth =authors.find(author=> author.name.toLowerCase()===authorName.toLowerCase())
   if (auth)
- { let bookIds=auth.books
+ { let bookIds=auth.books;
 
-  booksList=bookIds.map(ids=>(getBookById(ids,books).title))
-
+  let booksList=bookIds.map(ids=>(getBookById(ids,books).title))
+  
   return booksList
 }
 
