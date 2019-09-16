@@ -6,7 +6,8 @@
  * - returns undefined if no matching book is found
  ****************************************************************/
 function getBookById(bookId, books) {
-  // Your code goes here
+  return books.find(book=> book.id===bookId)
+
 }
 
 /**************************************************************
@@ -17,8 +18,7 @@ function getBookById(bookId, books) {
  * - returns undefined if no matching author is found
  ****************************************************************/
 function getAuthorByName(authorName, authors) {
-  // Your code goes here
-}
+  return authors.find(author=> author.name.toLowerCase()===authorName.toLowerCase())}
 
 /**************************************************************
  * bookCountsByAuthor(authors):
@@ -27,7 +27,14 @@ function getAuthorByName(authorName, authors) {
  *    [{ author: <NAME>, bookCount: <NUMBER_OF_BOOKS> }]
  ****************************************************************/
 function bookCountsByAuthor(authors) {
-  // Your code goes here
+  let authDictionary = authors.map( (author) => {
+    return {
+    author: author.name,
+    bookCount:  author.books.length,
+   } 
+  } )
+
+  return authDictionary;
 }
 
 /**************************************************************
@@ -39,9 +46,16 @@ function bookCountsByAuthor(authors) {
  ****************************************************************/
 function booksByColor(books) {
   const colors = {};
-
-  // Your code goes here
-
+ books.forEach(book=>{
+   if (colors[book.color])
+   {
+     colors[book.color].push(book.title);
+    }
+   else {
+      colors[book.color]=[book.title];
+   }
+  }
+)
   return colors;
 }
 
@@ -55,6 +69,13 @@ function booksByColor(books) {
  ****************************************************************/
 function titlesByAuthorName(authorName, authors, books) {
   // Your code goes here
+  let auth =authors.find(author=> author.name.toLowerCase()===authorName.toLowerCase())
+  // auth.forEach(author=>bookIds.push(author.book))
+  let bookIds=auth.books
+  
+  booksList=bookIds.map(id=>getBookById(id))
+  return booksList
+
 }
 
 /**************************************************************
